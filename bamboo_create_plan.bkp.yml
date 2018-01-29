@@ -1,0 +1,6 @@
+---
+- hosts: localhost
+  connection: local
+  gather_facts: false
+    - name: create devs0001 plan on 10.8.87.182:
+      shell: /opt/atlassian-cli-7.5.0/bamboo.sh --server http://10.8.87.182:8085 --user admin --password 'admin123' --action createPlan  --plan "{{ project }}-A{{ 999999 | random | to_uuid | regex_search('^.{0,5}') | upper }}"  --name "devs0001"  --description "This is a sample plan"
