@@ -18,3 +18,40 @@
       ignore_errors: True
       delegate_to: localhost
       register: projectgroup
+
+    - name: create project devs00001 part of projectgroup devs00001 on 10.8.87.185
+      uri:
+        url: "http://10.8.87.185/api/projects"
+        method: POST
+        headers:
+          "X-Octopus-ApiKey" : "API-AYC1GBJ99XJHQZ3ZUSDRYQ5IRTO"
+        validate_certs: no
+        body: |
+          {
+            "name" : "devs00001",
+            "ProjectGroupId":"ProjectGroups-638",
+            "LifecycleId":"Lifecycles-1509"
+          }
+        body_format: json
+        status_code: 201
+      ignore_errors: True
+      delegate_to: localhost
+
+    - name: create team devs00001Team Admins on 10.8.87.185
+      uri:
+        url: "http://10.8.87.185/api/teams"
+        method: POST
+        headers:
+          "X-Octopus-ApiKey" : "API-AYC1GBJ99XJHQZ3ZUSDRYQ5IRTO"
+        validate_certs: no
+        body: |
+          {
+            "name" : "devs00001Team Admins",
+            "UserRoleIds" : ["userroles-systemadministrator"],
+            "ProjectGroupIds" : ["ProjectGroups-638"],
+            "MemberUserIds" : ["Users-1"]
+          }
+        body_format: json
+        status_code: 201
+      ignore_errors: True
+      delegate_to: localhost
