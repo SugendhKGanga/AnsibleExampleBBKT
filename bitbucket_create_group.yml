@@ -3,7 +3,7 @@
   connection: local
   gather_facts: false
   tasks:
-    - name: create group devs0001 on {{ target }}
+    - name: create group devs0001 on 10.8.87.181:7990
       uri:
         url: "http://10.8.87.181:7990/rest/api/1.0/admin/groups?name=devops-group"
         method: POST
