@@ -1,0 +1,53 @@
+---
+- hosts: localhost
+  connection: local
+  gather_facts: false
+  tasks:
+    - name: create project devops on 10.8.87.181:7990
+      uri:
+        url: "http://10.8.87.181:7990/rest/api/1.0/projects"
+        method: POST
+        user: admin
+        password: "admin"
+        force_basic_auth: yes
+        validate_certs: no
+        body: |
+          {
+            "name" : "devs0001",
+            "key" : "dev-s0001"
+          }
+        body_format: json
+        status_code: 201
+      ignore_errors: True
+      delegate_to: localhost
+
+    - name: create repository devs0001 on 10.8.87.181:7990
+      uri:
+        url: "http://10.8.87.181:7990/rest/api/1.0/projects/dev-s0001/repos"
+        method: POST
+        user: admin
+        password: "admin"
+        force_basic_auth: yes
+        validate_certs: no
+        body: |
+          {
+            "name" : "devs0001"
+          }
+        body_format: json
+        status_code: 201
+      ignore_errors: True
+      delegate_to: localhost
+
+    - name: configure group devops-group as PROJECT_ADMIN for project devs0001 on 10.8.87.181:7990
+      uri:
+        url: "http://10.8.87.181:7990/rest/api/1.0/projects/dev-s0001/permissions/groups?name=devops-group&permission=PROJECT_ADMIN"
+        method: PUT
+        user: admin
+        password: "admin"
+        force_basic_auth: yes
+        validate_certs: no
+        body_format: json
+        status_code: 204
+      ignore_errors: True
+      delegate_to: localhost
+
