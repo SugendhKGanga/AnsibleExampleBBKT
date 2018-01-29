@@ -5,7 +5,7 @@
   tasks:
     - name: configure group devops-group as PROJECT_ADMIN for project devs0001 on 10.8.87.181:7990
       uri:
-        url: "http://10.8.87.181:7990/rest/api/1.0/projects/devs0001/permissions/groups?name=devops-group&permission=PROJECT_ADMIN"
+        url: "http://10.8.87.181:7990/rest/api/1.0/projects/dev-s0001/permissions/groups?name=devops-group&permission=PROJECT_ADMIN"
         method: PUT
         user: admin
         password: "admin"
