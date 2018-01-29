@@ -1,0 +1,21 @@
+---
+- hosts: localhost
+  connection: local
+  gather_facts: false
+  tasks:
+    - name: create repository devs0001 on 10.8.87.181:7990
+      uri:
+        url: "http://10.8.87.181:7990/rest/api/1.0/projects/devs0001/repos"
+        method: POST
+        user: admin
+        password: "admin"
+        force_basic_auth: yes
+        validate_certs: no
+        body: |
+          {
+            "name" : "devs0001"
+          }
+        body_format: json
+        status_code: 201
+      ignore_errors: True
+      delegate_to: localhost
