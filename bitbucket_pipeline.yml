@@ -1,0 +1,7 @@
+---
+- hosts: localhost
+- import_playbook: create_bbkt_project.yml
+- import_playbook: bitbucket_create_repository.yml
+- import_playbook: bitbucket_create_group.yml
+- import_playbook: bitbucket_create_user.yml
+- import_playbook: bitbucket_create_permission.yml
