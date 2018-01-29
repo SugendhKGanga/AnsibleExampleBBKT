@@ -1,0 +1,6 @@
+---
+- hosts: localhost
+  connection: local
+  gather_facts: false
+    - name: create devs00001 plan on 10.8.87.182:8085
+      shell: /opt/atlassian-cli-7.0.0/bamboo.sh --server http://10.8.87.182:8085 --user admin --password 'admin123' --action createPlan  --plan "Dev-N00001"  --name "devs00001"  --description "This is a sample plan"
