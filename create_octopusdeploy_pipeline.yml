@@ -1,0 +1,20 @@
+- hosts: localhost
+  connection: local
+  gather_facts: false
+  tasks:
+    - name: create projectgroup devs00001 on 10.8.87.185
+      uri:
+        url: "http://10.8.87.185/api/projectgroups"
+        method: POST
+        headers:
+          "X-Octopus-ApiKey" : "API-AYC1GBJ99XJHQZ3ZUSDRYQ5IRTO"
+        validate_certs: no
+        body: |
+          {
+            "name" : "devs00001"
+          }
+        body_format: json
+        status_code: 201
+      ignore_errors: True
+      delegate_to: localhost
+      register: projectgroup
